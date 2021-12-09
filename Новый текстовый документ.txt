@@ -1,0 +1,94 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace task1
+{
+    internal class Program
+    {
+        // Угол из градусов в радианы
+        static void Main(string[] args)
+        {
+            Degrees degrees = new Degrees(60, 45, 15);                       
+            degrees.ToRadians();            
+        }
+    }
+    class Degrees
+    {
+        int gradus = 45;
+        int min = 0;
+        int sec = 0;
+
+        public int Gradus
+        {
+            set
+            {               
+               if (value >= 0)
+                {
+                    gradus = value;
+                } else
+                {
+                    Console.WriteLine("Количество градусов не может быть отрицательным!");                    
+                }
+            }
+            get
+            {
+                return gradus;
+            }
+        }
+
+        public int Min
+        {
+            set
+            {
+                if (value >= 0 && value < 60)
+                {
+                    gradus = value;
+                }
+                else
+                {
+                    Console.WriteLine("Количество минут не может быть меньше ноля и больше 59!");                    
+                }
+            }
+            get
+            {
+                return gradus;
+            }
+        }
+
+        public int Sec
+        {
+            set
+            {
+                if (value >= 0 && value < 60)
+                {
+                    gradus = value;
+                }
+                else
+                {
+                    Console.WriteLine("Количество секунд не может быть меньше ноля и больше 59!");                    
+                }
+            }
+            get
+            {
+                return gradus;
+            }
+        }
+
+        public Degrees(int gradus, int min, int sec)
+        {
+            Gradus = gradus;
+            Min = min;
+            Sec = sec;
+        }
+
+        public void ToRadians()
+        {
+            double rad = Math.Round(Math.PI * (gradus + min / 60 + sec / 3600) / 180, 3);
+            Console.WriteLine("В угле " + gradus + "°" + min + "'" + sec + "\" " + rad + " радиан.");
+            Console.ReadKey();
+        }
+    }
+}
